@@ -3,7 +3,7 @@ package es.adevinta.spain.friends.legacy;
 import es.adevinta.spain.friends.application.friendship.request.model.FriendshipRequestData;
 import es.adevinta.spain.friends.application.friendship.request.model.FriendshipRequestDataBuilder;
 import es.adevinta.spain.friends.application.friendship.request.service.FriendshipRequestService;
-import es.adevinta.spain.friends.application.user.registration.model.LoginException;
+import es.adevinta.spain.friends.application.user.registration.model.IncorrectPasswordException;
 import es.adevinta.spain.friends.application.user.registration.model.UserNotFoundException;
 import es.adevinta.spain.friends.domain.friendship.request.model.NotValidFriendshipRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +31,7 @@ public class FriendshipLegacyController {
       .build();
     try {
       friendshipRequestService.request(data);
-    } catch (NotValidFriendshipRequestException | UserNotFoundException | LoginException e) {
+    } catch (NotValidFriendshipRequestException | UserNotFoundException | IncorrectPasswordException e) {
       throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
     }
   }

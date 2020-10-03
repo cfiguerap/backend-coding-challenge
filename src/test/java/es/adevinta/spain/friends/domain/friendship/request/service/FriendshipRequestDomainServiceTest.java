@@ -47,6 +47,19 @@ public class FriendshipRequestDomainServiceTest {
     }
 
     @Test(expected = NotValidFriendshipRequestException.class)
+    public void shouldNotRegisterDuplicatedCrossedUsers() throws NotValidFriendshipRequestException {
+        User userFrom = UserUtils.randomUser();
+        User userTo = UserUtils.randomUser();
+        assertTrue(friendshipRequestRepository.requestsFromUsername(userFrom.username()).isEmpty());
+
+        FriendshipRequest request = FriendshipRequestBuilder.builder().withFrom(userFrom).withTo(userTo).build();
+        friendshipRequestDomainService.requestFriendship(request);
+
+        request = FriendshipRequestBuilder.builder().withFrom(userTo).withTo(userFrom).build();
+        friendshipRequestDomainService.requestFriendship(request);
+    }
+
+    @Test(expected = NotValidFriendshipRequestException.class)
     public void shouldNotRegisterDuplicatedUsers() throws NotValidFriendshipRequestException {
         User userFrom = UserUtils.randomUser();
         User userTo = UserUtils.randomUser();
