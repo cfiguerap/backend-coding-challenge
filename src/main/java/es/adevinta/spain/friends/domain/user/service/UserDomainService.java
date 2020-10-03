@@ -2,9 +2,6 @@ package es.adevinta.spain.friends.domain.user.service;
 
 import es.adevinta.spain.friends.application.user.registration.model.NotValidRegisterException;
 import es.adevinta.spain.friends.domain.user.model.User;
-import es.adevinta.spain.friends.domain.user.model.UserBuilder;
-import es.adevinta.spain.friends.domain.user.model.vo.Password;
-import es.adevinta.spain.friends.domain.user.model.vo.Username;
 import es.adevinta.spain.friends.infra.user.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

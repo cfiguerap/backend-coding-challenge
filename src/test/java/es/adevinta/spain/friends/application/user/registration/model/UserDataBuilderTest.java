@@ -1,7 +1,6 @@
 package es.adevinta.spain.friends.application.user.registration.model;
 
 import es.adevinta.spain.friends.domain.user.model.User;
-import es.adevinta.spain.friends.domain.user.model.UserBuilder;
 import es.adevinta.spain.friends.infra.user.UserUtils;
 import org.junit.Test;
 

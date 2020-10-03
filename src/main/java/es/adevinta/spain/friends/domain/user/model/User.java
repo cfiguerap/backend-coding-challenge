@@ -4,9 +4,6 @@ import es.adevinta.spain.friends.domain.common.AbstractDomainObject;
 import es.adevinta.spain.friends.domain.user.model.vo.Password;
 import es.adevinta.spain.friends.domain.user.model.vo.Username;
 
-import java.io.Serializable;
-import java.util.Objects;
-
 public class User extends AbstractDomainObject<UserId> {
 
     private Username username;

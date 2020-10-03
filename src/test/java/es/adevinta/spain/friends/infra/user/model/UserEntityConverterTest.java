@@ -1,19 +1,14 @@
 package es.adevinta.spain.friends.infra.user.model;
 
 import es.adevinta.spain.friends.domain.user.model.User;
-import es.adevinta.spain.friends.domain.user.model.UserBuilder;
-import es.adevinta.spain.friends.domain.user.model.vo.Password;
-import es.adevinta.spain.friends.domain.user.model.vo.Username;
 import es.adevinta.spain.friends.infra.user.UserUtils;
-import es.adevinta.spain.friends.infra.user.repository.UserRepositoryInMemory;
-import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 public class UserEntityConverterTest {
 

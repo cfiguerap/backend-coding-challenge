@@ -1,6 +1,5 @@
 package es.adevinta.spain.friends.domain.common;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.util.StringUtils;
 
 import java.io.Serializable;

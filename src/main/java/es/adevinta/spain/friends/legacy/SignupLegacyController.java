@@ -4,7 +4,6 @@ import es.adevinta.spain.friends.application.user.registration.model.NotValidReg
 import es.adevinta.spain.friends.application.user.registration.model.UserData;
 import es.adevinta.spain.friends.application.user.registration.model.UserDataBuilder;
 import es.adevinta.spain.friends.application.user.registration.service.UserRegistrationService;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

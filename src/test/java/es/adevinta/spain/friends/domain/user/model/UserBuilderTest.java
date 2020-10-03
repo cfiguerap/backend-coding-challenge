@@ -1,15 +1,9 @@
 package es.adevinta.spain.friends.domain.user.model;
 
-import es.adevinta.spain.friends.application.user.registration.model.NotValidRegisterException;
-import es.adevinta.spain.friends.domain.user.service.UserDomainService;
 import es.adevinta.spain.friends.infra.user.UserUtils;
-import es.adevinta.spain.friends.infra.user.model.UserEntityConverter;
-import es.adevinta.spain.friends.infra.user.repository.UserRepository;
-import es.adevinta.spain.friends.infra.user.repository.UserRepositoryInMemory;
-import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class UserBuilderTest {
 

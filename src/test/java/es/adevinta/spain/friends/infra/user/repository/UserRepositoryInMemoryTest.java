@@ -1,17 +1,11 @@
 package es.adevinta.spain.friends.infra.user.repository;
 
 import es.adevinta.spain.friends.domain.user.model.User;
-import es.adevinta.spain.friends.domain.user.model.UserBuilder;
-import es.adevinta.spain.friends.domain.user.model.vo.Password;
 import es.adevinta.spain.friends.domain.user.model.vo.Username;
 import es.adevinta.spain.friends.infra.user.UserUtils;
 import es.adevinta.spain.friends.infra.user.model.UserEntityConverter;
-import es.adevinta.spain.friends.utils.AlphanumericUtils;
 import org.junit.Before;
 import org.junit.Test;
-
-import java.util.Random;
-import java.util.UUID;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
