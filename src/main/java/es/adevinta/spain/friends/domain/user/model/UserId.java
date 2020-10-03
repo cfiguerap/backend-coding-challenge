@@ -1,6 +1,8 @@
 package es.adevinta.spain.friends.domain.user.model;
 
 import es.adevinta.spain.friends.domain.common.AbstractDomainId;
+import es.adevinta.spain.friends.domain.user.model.vo.Password;
+import es.adevinta.spain.friends.domain.user.model.vo.Username;
 
 public class UserId extends AbstractDomainId {
 
@@ -10,7 +12,7 @@ public class UserId extends AbstractDomainId {
         super(value);
     }
 
-    public static UserId create(String username, String password) {
-        return new UserId(username + "." + password);
+    public static UserId create(Username username, Password password) {
+        return new UserId(username.value() + "." + password.value());
     }
 }

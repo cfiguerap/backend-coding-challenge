@@ -10,7 +10,7 @@ public class User extends AbstractDomainObject<UserId> {
     private Password password;
 
     public User(Username username, Password password) {
-        super(UserId.create(username.value(), password.value()));
+        super(UserId.create(username, password));
         this.username = username;
         this.password = password;
     }
