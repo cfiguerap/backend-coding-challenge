@@ -1,8 +1,8 @@
 package es.adevinta.spain.friends.infra.user.repository;
 
+import es.adevinta.spain.friends.domain.user.UserTestUtils;
 import es.adevinta.spain.friends.domain.user.model.User;
 import es.adevinta.spain.friends.domain.user.model.vo.Username;
-import es.adevinta.spain.friends.infra.user.UserUtils;
 import es.adevinta.spain.friends.infra.user.model.UserEntityConverter;
 import org.junit.Before;
 import org.junit.Test;
@@ -21,23 +21,23 @@ public class UserRepositoryInMemoryTest {
 
     @Test
     public void shouldNotFindNotExistentUsers() {
-        assertFalse(userRepository.findByUsername(Username.create("not_exists")).isPresent());
+        assertFalse(userRepository.exists(Username.create("not_exists")));
     }
 
     @Test
     public void shouldFindAndSaveUsersSuccessfully() {
-        User user = UserUtils.randomUser();
-        assertFalse(userRepository.findByUsername(user.username()).isPresent());
+        User user = UserTestUtils.randomUser();
+        assertFalse(userRepository.exists(user.username()));
         userRepository.save(user);
-        assertTrue(userRepository.findByUsername(user.username()).isPresent());
+        assertTrue(userRepository.exists(user.username()));
     }
 
     @Test
     public void shouldRemoveUsersSuccessfully() {
-        User user = UserUtils.randomUser();
+        User user = UserTestUtils.randomUser();
         userRepository.save(user);
-        assertTrue(userRepository.findByUsername(user.username()).isPresent());
+        assertTrue(userRepository.exists(user.username()));
         userRepository.remove(user);
-        assertFalse(userRepository.findByUsername(user.username()).isPresent());
+        assertFalse(userRepository.exists(user.username()));
     }
 }

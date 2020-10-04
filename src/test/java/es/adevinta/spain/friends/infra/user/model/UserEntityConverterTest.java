@@ -1,7 +1,7 @@
 package es.adevinta.spain.friends.infra.user.model;
 
+import es.adevinta.spain.friends.domain.user.UserTestUtils;
 import es.adevinta.spain.friends.domain.user.model.User;
-import es.adevinta.spain.friends.infra.user.UserUtils;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -16,7 +16,7 @@ public class UserEntityConverterTest {
 
     @Test
     public void shouldConvertUserToEntitySuccessfully() {
-        User user = UserUtils.randomUser();
+        User user = UserTestUtils.randomUser();
         UserEntity entity = converter.target(user);
 
         assertNotNull(entity);
@@ -26,7 +26,7 @@ public class UserEntityConverterTest {
 
     @Test
     public void shouldConvertEntityToUsersSuccessfully() {
-        User user = UserUtils.randomUser();
+        User user = UserTestUtils.randomUser();
         UserEntity entity = new UserEntity(user.username().value(), user.password().value());
         User newUser = converter.source(entity);
 
@@ -39,7 +39,7 @@ public class UserEntityConverterTest {
     public void shouldConvertUsersToEntitiesSuccessfully() {
         List<User> users = new ArrayList<>();
         for (int i=0; i<5; i++) {
-            users.add(UserUtils.randomUser());
+            users.add(UserTestUtils.randomUser());
         }
         List<UserEntity> entities = converter.target(users);
 
@@ -55,7 +55,7 @@ public class UserEntityConverterTest {
     public void shouldConvertEntitiesToUsersSuccessfully() {
         List<UserEntity> entities = new ArrayList<>();
         for (int i=0; i<5; i++) {
-            User user = UserUtils.randomUser();
+            User user = UserTestUtils.randomUser();
             UserEntity entity = new UserEntity(user.username().value(), user.password().value());
             entities.add(entity);
         }

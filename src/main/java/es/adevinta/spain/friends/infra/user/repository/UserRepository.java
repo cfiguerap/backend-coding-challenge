@@ -9,6 +9,8 @@ import java.util.Optional;
 @Repository
 public interface UserRepository {
 
+    public boolean exists(Username username);
+
     public Optional<User> findByUsername(Username username);
 
     public void save(User user);

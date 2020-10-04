@@ -11,21 +11,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserRegistrationService {
+public class UserService {
 
     private UserDomainService userDomainService;
 
     @Autowired
-    public UserRegistrationService(UserDomainService userDomainService) {
+    public UserService(UserDomainService userDomainService) {
         this.userDomainService = userDomainService;
     }
 
-    /**
-     * Application Service - User Registration
-     *
-     * @param userData
-     * @throws NotValidRegisterException
-     */
+
     public void register(UserData userData) throws NotValidRegisterException {
         User newUser = UserBuilder.builder()
                 .withUsername(Username.create(userData.username()))

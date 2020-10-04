@@ -4,11 +4,14 @@ import es.adevinta.spain.friends.domain.friendship.request.model.FriendshipReque
 import es.adevinta.spain.friends.domain.friendship.request.model.FriendshipRequestBuilder;
 import es.adevinta.spain.friends.domain.friendship.request.model.NotValidFriendshipRequestException;
 import es.adevinta.spain.friends.domain.friendship.request.validation.FriendshipRequestValidator;
+import es.adevinta.spain.friends.domain.user.UserTestUtils;
 import es.adevinta.spain.friends.domain.user.model.User;
+import es.adevinta.spain.friends.infra.friendship.common.model.FriendshipEntityConverter;
+import es.adevinta.spain.friends.infra.friendship.common.repository.FriendshipRepository;
+import es.adevinta.spain.friends.infra.friendship.common.repository.FriendshipRepositoryInMemory;
 import es.adevinta.spain.friends.infra.friendship.request.model.FriendshipRequestEntityConverter;
 import es.adevinta.spain.friends.infra.friendship.request.repository.FriendshipRequestRepository;
 import es.adevinta.spain.friends.infra.friendship.request.repository.FriendshipRequestRepositoryInMemory;
-import es.adevinta.spain.friends.infra.user.UserUtils;
 import es.adevinta.spain.friends.infra.user.model.UserEntityConverter;
 import org.junit.Before;
 import org.junit.Test;
@@ -23,18 +26,20 @@ public class FriendshipRequestDomainServiceTest {
     private FriendshipRequestDomainService friendshipRequestDomainService;
     private FriendshipRequestValidator friendshipRequestValidator;
     private FriendshipRequestRepository friendshipRequestRepository;
+    private FriendshipRepository friendshipRepository;
 
     @Before
     public void setUp() {
-        friendshipRequestRepository = new FriendshipRequestRepositoryInMemory(new FriendshipRequestEntityConverter(new UserEntityConverter()));
-        friendshipRequestValidator = new FriendshipRequestValidator(friendshipRequestRepository);
+        friendshipRepository = new FriendshipRepositoryInMemory(new FriendshipEntityConverter(new UserEntityConverter()));
+        friendshipRequestRepository = new FriendshipRequestRepositoryInMemory(new FriendshipRequestEntityConverter(new FriendshipEntityConverter(new UserEntityConverter())));
+        friendshipRequestValidator = new FriendshipRequestValidator(friendshipRepository, friendshipRequestRepository);
         friendshipRequestDomainService = new FriendshipRequestDomainService(friendshipRequestValidator, friendshipRequestRepository);
     }
 
     @Test
     public void shouldReturnFriendshipRequestsSuccessfully() throws NotValidFriendshipRequestException {
-        User userFrom = UserUtils.randomUser();
-        User userTo = UserUtils.randomUser();
+        User userFrom = UserTestUtils.randomUser();
+        User userTo = UserTestUtils.randomUser();
         assertTrue(friendshipRequestRepository.requestsFromUsername(userFrom.username()).isEmpty());
 
         FriendshipRequest request = FriendshipRequestBuilder.builder().withFrom(userFrom).withTo(userTo).build();
@@ -48,8 +53,8 @@ public class FriendshipRequestDomainServiceTest {
 
     @Test(expected = NotValidFriendshipRequestException.class)
     public void shouldNotRegisterDuplicatedCrossedUsers() throws NotValidFriendshipRequestException {
-        User userFrom = UserUtils.randomUser();
-        User userTo = UserUtils.randomUser();
+        User userFrom = UserTestUtils.randomUser();
+        User userTo = UserTestUtils.randomUser();
         assertTrue(friendshipRequestRepository.requestsFromUsername(userFrom.username()).isEmpty());
 
         FriendshipRequest request = FriendshipRequestBuilder.builder().withFrom(userFrom).withTo(userTo).build();
@@ -61,8 +66,8 @@ public class FriendshipRequestDomainServiceTest {
 
     @Test(expected = NotValidFriendshipRequestException.class)
     public void shouldNotRegisterDuplicatedUsers() throws NotValidFriendshipRequestException {
-        User userFrom = UserUtils.randomUser();
-        User userTo = UserUtils.randomUser();
+        User userFrom = UserTestUtils.randomUser();
+        User userTo = UserTestUtils.randomUser();
         assertTrue(friendshipRequestRepository.requestsFromUsername(userFrom.username()).isEmpty());
 
         FriendshipRequest request = FriendshipRequestBuilder.builder().withFrom(userFrom).withTo(userTo).build();

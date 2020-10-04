@@ -2,8 +2,8 @@ package es.adevinta.spain.friends.domain.user.service;
 
 import es.adevinta.spain.friends.application.user.registration.model.NotValidRegisterException;
 import es.adevinta.spain.friends.application.user.registration.model.UserNotFoundException;
+import es.adevinta.spain.friends.domain.user.UserTestUtils;
 import es.adevinta.spain.friends.domain.user.model.User;
-import es.adevinta.spain.friends.infra.user.UserUtils;
 import es.adevinta.spain.friends.infra.user.model.UserEntityConverter;
 import es.adevinta.spain.friends.infra.user.repository.UserRepository;
 import es.adevinta.spain.friends.infra.user.repository.UserRepositoryInMemory;
@@ -25,7 +25,7 @@ public class UserDomainServiceTest {
 
     @Test
     public void shouldReturnUsersSuccessfully() throws NotValidRegisterException, UserNotFoundException {
-        User user = UserUtils.randomUser();
+        User user = UserTestUtils.randomUser();
         assertFalse(userRepository.findByUsername(user.username()).isPresent());
         userDomainService.register(user);
         assertTrue(userRepository.findByUsername(user.username()).isPresent());
@@ -36,7 +36,7 @@ public class UserDomainServiceTest {
 
     @Test
     public void shouldRegisterUsersSuccessfully() throws NotValidRegisterException {
-        User user = UserUtils.randomUser();
+        User user = UserTestUtils.randomUser();
         assertFalse(userRepository.findByUsername(user.username()).isPresent());
         userDomainService.register(user);
         assertTrue(userRepository.findByUsername(user.username()).isPresent());
@@ -44,7 +44,7 @@ public class UserDomainServiceTest {
 
     @Test(expected = NotValidRegisterException.class)
     public void shouldNotRegisterDuplicatedUsers() throws NotValidRegisterException {
-        User user = UserUtils.randomUser();
+        User user = UserTestUtils.randomUser();
         assertFalse(userRepository.findByUsername(user.username()).isPresent());
         userDomainService.register(user);
         assertTrue(userRepository.findByUsername(user.username()).isPresent());

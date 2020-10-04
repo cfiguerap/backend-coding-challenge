@@ -19,10 +19,6 @@ public abstract class AbstractDomainId implements Serializable {
         this.value = value;
     }
 
-    public String id() {
-        return value;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

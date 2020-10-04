@@ -17,7 +17,8 @@ public class FriendshipRequestDomainService {
     @Autowired
     public FriendshipRequestDomainService(
             FriendshipRequestValidator friendshipRequestValidator,
-            FriendshipRequestRepository friendshipRequestRepository) {
+            FriendshipRequestRepository friendshipRequestRepository
+    ) {
         this.friendshipRequestValidator = friendshipRequestValidator;
         this.friendshipRequestRepository = friendshipRequestRepository;
     }

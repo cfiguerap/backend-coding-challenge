@@ -25,6 +25,17 @@ public class FriendshipRequestRepositoryInMemory implements FriendshipRequestRep
     }
 
     @Override
+    public boolean exists(FriendshipRequest friendshipRequest) {
+        List<FriendshipRequest> fromMe = this.requestsFromUsername(friendshipRequest.from().username());
+        for (FriendshipRequest req : fromMe) {
+            if (req.to().equals(friendshipRequest.to())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
     public List<FriendshipRequest> requestsFromUsername(Username username) {
         List<FriendshipRequestEntity> userRequests = requests.get(username.value());
         if (userRequests == null) {

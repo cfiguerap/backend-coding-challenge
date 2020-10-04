@@ -1,31 +1,29 @@
-package es.adevinta.spain.friends.infra.friendship.request.model;
+package es.adevinta.spain.friends.infra.friendship.common.model;
 
-import es.adevinta.spain.friends.domain.friendship.request.model.FriendshipRequest;
-import es.adevinta.spain.friends.domain.friendship.request.model.FriendshipRequestBuilder;
+import es.adevinta.spain.friends.domain.friendship.common.model.Friendship;
+import es.adevinta.spain.friends.domain.friendship.common.model.FriendshipBuilder;
 import es.adevinta.spain.friends.domain.user.UserTestUtils;
 import es.adevinta.spain.friends.domain.user.model.User;
-import es.adevinta.spain.friends.infra.friendship.common.model.FriendshipEntityConverter;
 import es.adevinta.spain.friends.infra.user.model.UserEntityConverter;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-public class FriendshipRequestEntityConverterTest {
+public class FriendshipEntityConverterTest {
 
     private UserEntityConverter userEntityConverter = new UserEntityConverter();
-    private FriendshipEntityConverter friendshipEntityConverter = new FriendshipEntityConverter(userEntityConverter);
-    private FriendshipRequestEntityConverter converter = new FriendshipRequestEntityConverter(friendshipEntityConverter);
+    private FriendshipEntityConverter converter = new FriendshipEntityConverter(userEntityConverter);
 
     @Test
     public void shouldConvertFriendshipRequestToEntitySuccessfully() {
         User user1 = UserTestUtils.randomUser();
         User user2 = UserTestUtils.randomUser();
-        FriendshipRequest request = FriendshipRequestBuilder.builder()
+        Friendship request = FriendshipBuilder.builder()
                 .withFrom(user1)
                 .withTo(user2)
             .build();
-        FriendshipRequestEntity entity = converter.target(request);
+        FriendshipEntity entity = converter.target(request);
 
         assertNotNull(entity);
         assertEquals(user1.username().value(), entity.from().username());
@@ -36,8 +34,8 @@ public class FriendshipRequestEntityConverterTest {
     public void shouldConvertEntityToFriendshipRequestSuccessfully() {
         User user1 = UserTestUtils.randomUser();
         User user2 = UserTestUtils.randomUser();
-        FriendshipRequestEntity entity = new FriendshipRequestEntity(userEntityConverter.target(user1), userEntityConverter.target(user2));
-        FriendshipRequest request = converter.source(entity);
+        FriendshipEntity entity = new FriendshipEntity(userEntityConverter.target(user1), userEntityConverter.target(user2));
+        Friendship request = converter.source(entity);
         assertNotNull(request);
         assertEquals(user1.username(), request.from().username());
         assertEquals(user2.username(), request.to().username());

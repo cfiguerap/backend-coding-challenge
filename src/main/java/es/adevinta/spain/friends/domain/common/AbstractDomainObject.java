@@ -14,7 +14,7 @@ public abstract class AbstractDomainObject<T extends AbstractDomainId> implement
 	}
 
 	public AbstractDomainObject(T id){
-		if (StringUtils.isEmpty(id.id())) {
+		if (StringUtils.isEmpty(id.toString())) {
 			throw new IllegalArgumentException("Id must be not null");
 		}
 		this.id = id;

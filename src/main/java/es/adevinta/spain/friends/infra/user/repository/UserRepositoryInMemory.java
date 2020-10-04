@@ -24,6 +24,11 @@ public class UserRepositoryInMemory implements UserRepository {
     }
 
     @Override
+    public boolean exists(Username username) {
+        return findByUsername(username).isPresent();
+    }
+
+    @Override
     public Optional<User> findByUsername(Username username) {
         UserEntity entity = users.get(username.value());
         return (entity == null) ? Optional.empty() : Optional.of(converter.source(entity));

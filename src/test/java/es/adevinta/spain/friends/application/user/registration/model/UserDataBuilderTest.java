@@ -1,7 +1,7 @@
 package es.adevinta.spain.friends.application.user.registration.model;
 
+import es.adevinta.spain.friends.domain.user.UserTestUtils;
 import es.adevinta.spain.friends.domain.user.model.User;
-import es.adevinta.spain.friends.infra.user.UserUtils;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -20,7 +20,7 @@ public class UserDataBuilderTest {
 
     @Test(expected = NotValidRegisterException.class)
     public void shouldFailIfUsernameIsTooSmall() throws NotValidRegisterException {
-        User user = UserUtils.randomUser();
+        User user = UserTestUtils.randomUser();
         UserData data = UserDataBuilder.builder()
                 .withUsername("user")
                 .withPassword(user.password().value())
@@ -29,7 +29,7 @@ public class UserDataBuilderTest {
 
     @Test(expected = NotValidRegisterException.class)
     public void shouldFailIfUsernameIsTooLarge() throws NotValidRegisterException {
-        User user = UserUtils.randomUser();
+        User user = UserTestUtils.randomUser();
         UserData data = UserDataBuilder.builder()
                 .withUsername("username1234567890")
                 .withPassword(user.password().value())
@@ -38,7 +38,7 @@ public class UserDataBuilderTest {
 
     @Test(expected = NotValidRegisterException.class)
     public void shouldFailIfUsernameIsNotAlphanumeric() throws NotValidRegisterException {
-        User user = UserUtils.randomUser();
+        User user = UserTestUtils.randomUser();
         UserData data = UserDataBuilder.builder()
                 .withUsername("user_name")
                 .withPassword(user.password().value())
@@ -47,7 +47,7 @@ public class UserDataBuilderTest {
 
     @Test(expected = NotValidRegisterException.class)
     public void shouldFailIfPasswordIsTooSmall() throws NotValidRegisterException {
-        User user = UserUtils.randomUser();
+        User user = UserTestUtils.randomUser();
         UserData data = UserDataBuilder.builder()
                 .withUsername(user.username().value())
                 .withPassword("123")
@@ -56,7 +56,7 @@ public class UserDataBuilderTest {
 
     @Test(expected = NotValidRegisterException.class)
     public void shouldFailIfPasswordIsTooLarge() throws NotValidRegisterException {
-        User user = UserUtils.randomUser();
+        User user = UserTestUtils.randomUser();
         UserData data = UserDataBuilder.builder()
                 .withUsername(user.username().value())
                 .withPassword("abcdefghijk1234567890")
@@ -65,7 +65,7 @@ public class UserDataBuilderTest {
 
     @Test(expected = NotValidRegisterException.class)
     public void shouldFailIfPasswordIsNotAlphanumeric() throws NotValidRegisterException {
-        User user = UserUtils.randomUser();
+        User user = UserTestUtils.randomUser();
         UserData data = UserDataBuilder.builder()
                 .withUsername(user.username().value())
                 .withPassword("1_2_3")

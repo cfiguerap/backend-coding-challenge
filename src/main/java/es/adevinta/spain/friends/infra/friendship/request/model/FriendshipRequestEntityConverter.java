@@ -1,35 +1,28 @@
 package es.adevinta.spain.friends.infra.friendship.request.model;
 
 import es.adevinta.spain.friends.domain.friendship.request.model.FriendshipRequest;
-import es.adevinta.spain.friends.domain.friendship.request.model.FriendshipRequestBuilder;
 import es.adevinta.spain.friends.infra.common.EntityConverter;
-import es.adevinta.spain.friends.infra.user.model.UserEntity;
-import es.adevinta.spain.friends.infra.user.model.UserEntityConverter;
+import es.adevinta.spain.friends.infra.friendship.common.model.FriendshipEntityConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class FriendshipRequestEntityConverter extends EntityConverter<FriendshipRequest, FriendshipRequestEntity> {
 
-    private UserEntityConverter userEntityConverter;
+    private FriendshipEntityConverter friendshipEntityConverter;
 
     @Autowired
-    public FriendshipRequestEntityConverter(UserEntityConverter userEntityConverter) {
-        this.userEntityConverter = userEntityConverter;
+    public FriendshipRequestEntityConverter(FriendshipEntityConverter friendshipEntityConverter) {
+        this.friendshipEntityConverter = friendshipEntityConverter;
     }
 
     @Override
     public FriendshipRequestEntity target(FriendshipRequest t) {
-        UserEntity from = userEntityConverter.target(t.from());
-        UserEntity to = userEntityConverter.target(t.to());
-        return new FriendshipRequestEntity(from, to);
+        return (FriendshipRequestEntity) friendshipEntityConverter.target(t);
     }
 
     @Override
     public FriendshipRequest source(FriendshipRequestEntity r) {
-        return FriendshipRequestBuilder.builder()
-                .withFrom(userEntityConverter.source(r.from()))
-                .withTo(userEntityConverter.source(r.to()))
-            .build();
+        return (FriendshipRequest) friendshipEntityConverter.source(r);
     }
 }

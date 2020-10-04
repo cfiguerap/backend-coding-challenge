@@ -9,6 +9,8 @@ import java.util.List;
 @Repository
 public interface FriendshipRequestRepository {
 
+    public boolean exists(FriendshipRequest friendshipRequest);
+
     public List<FriendshipRequest> requestsFromUsername(Username username);
 
     public void save(FriendshipRequest friendshipRequest);

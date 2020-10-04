@@ -1,4 +1,4 @@
-package es.adevinta.spain.friends.domain.friendship.request.model;
+package es.adevinta.spain.friends.domain.friendship.common.model;
 
 import es.adevinta.spain.friends.domain.user.UserTestUtils;
 import es.adevinta.spain.friends.domain.user.model.User;
@@ -6,17 +6,17 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-public class FriendshipRequestBuilderTest {
+public class FriendshipBuilderTest {
 
     @Test
-    public void shouldBuilderFriendshipRequestsSuccessfully() {
+    public void shouldBuilderFriendshipsSuccessfully() {
         User userFrom = UserTestUtils.randomUser();
         User userTo = UserTestUtils.randomUser();
-        FriendshipRequest friendshipRequest = FriendshipRequestBuilder.builder()
+        Friendship friendship = FriendshipBuilder.builder()
                 .withFrom(userFrom)
                 .withTo(userTo)
             .build();
-        assertEquals(userFrom, friendshipRequest.from());
-        assertEquals(userTo, friendshipRequest.to());
+        assertEquals(userFrom, friendship.from());
+        assertEquals(userTo, friendship.to());
     }
 }
