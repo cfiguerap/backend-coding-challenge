@@ -10,9 +10,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class FriendshipRequestDomainService {
 
-    private FriendshipRequestValidator friendshipRequestValidator;
+    private final FriendshipRequestValidator friendshipRequestValidator;
 
-    private FriendshipRequestRepository friendshipRequestRepository;
+    private final FriendshipRequestRepository friendshipRequestRepository;
 
     @Autowired
     public FriendshipRequestDomainService(

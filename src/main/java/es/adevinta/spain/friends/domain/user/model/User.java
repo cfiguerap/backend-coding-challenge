@@ -7,7 +7,7 @@ import es.adevinta.spain.friends.domain.user.model.vo.Username;
 
 public class User extends AbstractDomainObject<UserId> {
 
-    private Password password;
+    private final Password password;
 
     public User(Username username, Password password) {
         super(UserId.create(username));

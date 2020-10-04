@@ -11,9 +11,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class FriendshipRequestValidator {
 
-    private FriendshipRepository friendshipRepository;
+    private final FriendshipRepository friendshipRepository;
 
-    private FriendshipRequestRepository friendshipRequestRepository;
+    private final FriendshipRequestRepository friendshipRequestRepository;
 
     @Autowired
     public FriendshipRequestValidator(

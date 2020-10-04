@@ -6,7 +6,6 @@ import es.adevinta.spain.friends.domain.friendship.common.model.Friendship;
 import es.adevinta.spain.friends.domain.friendship.common.model.FriendshipBuilder;
 import es.adevinta.spain.friends.domain.friendship.request.model.FriendshipRequest;
 import es.adevinta.spain.friends.domain.friendship.request.model.FriendshipRequestBuilder;
-import es.adevinta.spain.friends.domain.friendship.request.validation.FriendshipRequestValidator;
 import es.adevinta.spain.friends.domain.user.UserTestUtils;
 import es.adevinta.spain.friends.domain.user.model.User;
 import es.adevinta.spain.friends.infra.friendship.common.model.FriendshipEntityConverter;
@@ -24,7 +23,6 @@ import static org.junit.Assert.*;
 public class FriendshipDomainServiceTest {
 
     private FriendshipDomainService friendshipDomainService;
-    private FriendshipRequestValidator friendshipRequestValidator;
     private FriendshipRequestRepository friendshipRequestRepository;
     private FriendshipRepository friendshipRepository;
 
@@ -32,8 +30,7 @@ public class FriendshipDomainServiceTest {
     public void setUp() {
         friendshipRepository = new FriendshipRepositoryInMemory(new FriendshipEntityConverter(new UserEntityConverter()));
         friendshipRequestRepository = new FriendshipRequestRepositoryInMemory(new FriendshipRequestEntityConverter(new FriendshipEntityConverter(new UserEntityConverter())));
-        friendshipRequestValidator = new FriendshipRequestValidator(friendshipRepository, friendshipRequestRepository);
-        friendshipDomainService = new FriendshipDomainService(friendshipRequestValidator, friendshipRepository, friendshipRequestRepository);
+        friendshipDomainService = new FriendshipDomainService(friendshipRepository, friendshipRequestRepository);
     }
 
     @Test

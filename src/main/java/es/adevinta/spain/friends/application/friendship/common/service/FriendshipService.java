@@ -22,11 +22,11 @@ import java.util.stream.Collectors;
 @Service
 public class FriendshipService {
 
-    private FriendshipDataValidator friendshipDataValidator;
+    private final FriendshipDataValidator friendshipDataValidator;
 
-    private FriendshipDomainService friendshipDomainService;
+    private final FriendshipDomainService friendshipDomainService;
 
-    private UserDomainService userDomainService;
+    private final UserDomainService userDomainService;
 
     @Autowired
     public FriendshipService(

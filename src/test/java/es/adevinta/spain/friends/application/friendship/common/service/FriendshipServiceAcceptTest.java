@@ -54,8 +54,8 @@ public class FriendshipServiceAcceptTest {
 
         FriendshipRequestValidator friendshipRequestValidator = new FriendshipRequestValidator(friendshipRepository, friendshipRequestRepository);
         FriendshipRequestDomainService friendshipRequestDomainService = new FriendshipRequestDomainService(friendshipRequestValidator, friendshipRequestRepository);
-        FriendshipDataValidator friendshipDataValidator = new FriendshipDataValidator(userService, userDomainService);
-        FriendshipDomainService friendshipDomainService = new FriendshipDomainService(friendshipRequestValidator, friendshipRepository, friendshipRequestRepository);
+        FriendshipDataValidator friendshipDataValidator = new FriendshipDataValidator();
+        FriendshipDomainService friendshipDomainService = new FriendshipDomainService(friendshipRepository, friendshipRequestRepository);
         friendshipRequestService = new FriendshipRequestService(
             friendshipDataValidator,
             friendshipRequestDomainService,
@@ -167,7 +167,7 @@ public class FriendshipServiceAcceptTest {
     }
 
     @Test(expected = CannotAcceptFriendshipException.class)
-    public void shouldNotAcceptFriendshipBecauseThereIsNoRequest() throws NotValidRegisterException, UserNotFoundException, IncorrectPasswordException, NotValidFriendshipRequestException, CannotAcceptFriendshipException {
+    public void shouldNotAcceptFriendshipBecauseThereIsNoRequest() throws NotValidRegisterException, UserNotFoundException, IncorrectPasswordException, CannotAcceptFriendshipException {
         User userFrom = UserBuilder.builder().withUsername(Username.create("username1")).withPassword(Password.create("password123")).build();
         User userTo = UserBuilder.builder().withUsername(Username.create("username2")).withPassword(Password.create("password456")).build();
 

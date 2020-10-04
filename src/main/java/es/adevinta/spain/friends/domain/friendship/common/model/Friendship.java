@@ -5,8 +5,8 @@ import es.adevinta.spain.friends.domain.user.model.User;
 
 public class Friendship extends AbstractDomainObject<FriendshipId> {
 
-    private User from;
-    private User to;
+    private final User from;
+    private final User to;
 
     public Friendship(User from, User to) {
         super(FriendshipId.create(from.username(), to.username()));

@@ -2,8 +2,8 @@ package es.adevinta.spain.friends.application.friendship.request.model;
 
 public class FriendshipData {
 
-    private String from;
-    private String password;
+    private final String from;
+    private final String password;
 
     FriendshipData(String from, String password) {
         this.from = from;

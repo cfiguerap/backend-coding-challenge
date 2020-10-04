@@ -5,7 +5,6 @@ import es.adevinta.spain.friends.domain.friendship.common.model.CannotDeclineFri
 import es.adevinta.spain.friends.domain.friendship.common.model.Friendship;
 import es.adevinta.spain.friends.domain.friendship.common.model.FriendshipBuilder;
 import es.adevinta.spain.friends.domain.friendship.request.model.FriendshipRequest;
-import es.adevinta.spain.friends.domain.friendship.request.validation.FriendshipRequestValidator;
 import es.adevinta.spain.friends.domain.user.model.User;
 import es.adevinta.spain.friends.domain.user.model.vo.Username;
 import es.adevinta.spain.friends.infra.friendship.common.repository.FriendshipRepository;
@@ -19,19 +18,15 @@ import java.util.stream.Collectors;
 @Service
 public class FriendshipDomainService {
 
-    private FriendshipRequestValidator friendshipRequestValidator;
+    private final FriendshipRepository friendshipRepository;
 
-    private FriendshipRepository friendshipRepository;
-
-    private FriendshipRequestRepository friendshipRequestRepository;
+    private final FriendshipRequestRepository friendshipRequestRepository;
 
     @Autowired
     public FriendshipDomainService(
-            FriendshipRequestValidator friendshipRequestValidator,
             FriendshipRepository friendshipRepository,
             FriendshipRequestRepository friendshipRequestRepository
         ) {
-        this.friendshipRequestValidator = friendshipRequestValidator;
         this.friendshipRepository = friendshipRepository;
         this.friendshipRequestRepository = friendshipRequestRepository;
     }

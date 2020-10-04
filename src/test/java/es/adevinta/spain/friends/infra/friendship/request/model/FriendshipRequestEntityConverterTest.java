@@ -13,9 +13,9 @@ import static org.junit.Assert.assertNotNull;
 
 public class FriendshipRequestEntityConverterTest {
 
-    private UserEntityConverter userEntityConverter = new UserEntityConverter();
-    private FriendshipEntityConverter friendshipEntityConverter = new FriendshipEntityConverter(userEntityConverter);
-    private FriendshipRequestEntityConverter converter = new FriendshipRequestEntityConverter(friendshipEntityConverter);
+    private final UserEntityConverter userEntityConverter = new UserEntityConverter();
+    private final FriendshipEntityConverter friendshipEntityConverter = new FriendshipEntityConverter(userEntityConverter);
+    private final FriendshipRequestEntityConverter converter = new FriendshipRequestEntityConverter(friendshipEntityConverter);
 
     @Test
     public void shouldConvertFriendshipRequestToEntitySuccessfully() {

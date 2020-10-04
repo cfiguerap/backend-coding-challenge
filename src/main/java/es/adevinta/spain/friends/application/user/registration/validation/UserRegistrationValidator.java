@@ -14,11 +14,6 @@ public class UserRegistrationValidator {
     private static final Integer PASSWORD_MAX_SIZE = 12;
 
 
-    /**
-     *
-     * @param userData
-     * @throws NotValidRegisterException
-     */
     public static void checkValidUserData(UserData userData) throws NotValidRegisterException {
         if (!checkValidValues(userData.username(), USERNAME_MIN_SIZE, USERNAME_MAX_SIZE)) {
             throw new NotValidRegisterException("Username is not valid");
@@ -28,13 +23,6 @@ public class UserRegistrationValidator {
         }
     }
 
-    /**
-     *
-     * @param input
-     * @param minSize
-     * @param maxSize
-     * @return
-     */
     private static boolean checkValidValues(String input, Integer minSize, Integer maxSize) {
         return !StringUtils.isEmpty(input)
                 && AlphanumericUtils.isAlphanumeric(input)

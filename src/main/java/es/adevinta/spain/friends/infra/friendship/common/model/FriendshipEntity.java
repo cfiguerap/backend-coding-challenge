@@ -6,8 +6,8 @@ import java.util.Objects;
 
 public class FriendshipEntity {
 
-    private UserEntity from;
-    private UserEntity to;
+    private final UserEntity from;
+    private final UserEntity to;
 
     public FriendshipEntity(UserEntity from, UserEntity to) {
         this.from = from;

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class FriendshipRequestEntityConverter extends EntityConverter<FriendshipRequest, FriendshipRequestEntity> {
 
-    private FriendshipEntityConverter friendshipEntityConverter;
+    private final FriendshipEntityConverter friendshipEntityConverter;
 
     @Autowired
     public FriendshipRequestEntityConverter(FriendshipEntityConverter friendshipEntityConverter) {

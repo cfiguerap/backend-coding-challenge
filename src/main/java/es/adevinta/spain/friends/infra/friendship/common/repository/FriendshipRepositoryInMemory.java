@@ -17,7 +17,7 @@ public class FriendshipRepositoryInMemory implements FriendshipRepository {
 
     private final Map<String, List<FriendshipEntity>> friendships = new ConcurrentHashMap<>();
 
-    private FriendshipEntityConverter converter;
+    private final FriendshipEntityConverter converter;
 
     @Autowired
     public FriendshipRepositoryInMemory(FriendshipEntityConverter converter) {

@@ -24,15 +24,13 @@ import static org.junit.Assert.assertTrue;
 public class FriendshipRequestDomainServiceTest {
 
     private FriendshipRequestDomainService friendshipRequestDomainService;
-    private FriendshipRequestValidator friendshipRequestValidator;
     private FriendshipRequestRepository friendshipRequestRepository;
-    private FriendshipRepository friendshipRepository;
 
     @Before
     public void setUp() {
-        friendshipRepository = new FriendshipRepositoryInMemory(new FriendshipEntityConverter(new UserEntityConverter()));
+        FriendshipRepository friendshipRepository = new FriendshipRepositoryInMemory(new FriendshipEntityConverter(new UserEntityConverter()));
         friendshipRequestRepository = new FriendshipRequestRepositoryInMemory(new FriendshipRequestEntityConverter(new FriendshipEntityConverter(new UserEntityConverter())));
-        friendshipRequestValidator = new FriendshipRequestValidator(friendshipRepository, friendshipRequestRepository);
+        FriendshipRequestValidator friendshipRequestValidator = new FriendshipRequestValidator(friendshipRepository, friendshipRequestRepository);
         friendshipRequestDomainService = new FriendshipRequestDomainService(friendshipRequestValidator, friendshipRequestRepository);
     }
 

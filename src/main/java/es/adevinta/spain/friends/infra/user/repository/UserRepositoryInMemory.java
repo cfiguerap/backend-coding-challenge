@@ -16,7 +16,7 @@ public class UserRepositoryInMemory implements UserRepository {
 
     private final Map<String, UserEntity> users = new ConcurrentHashMap<>();
 
-    private UserEntityConverter converter;
+    private final UserEntityConverter converter;
 
     @Autowired
     public UserRepositoryInMemory(UserEntityConverter converter) {

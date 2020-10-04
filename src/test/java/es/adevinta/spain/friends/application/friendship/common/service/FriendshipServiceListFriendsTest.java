@@ -55,8 +55,8 @@ public class FriendshipServiceListFriendsTest {
 
         FriendshipRequestValidator friendshipRequestValidator = new FriendshipRequestValidator(friendshipRepository, friendshipRequestRepository);
         FriendshipRequestDomainService friendshipRequestDomainService = new FriendshipRequestDomainService(friendshipRequestValidator, friendshipRequestRepository);
-        FriendshipDataValidator friendshipDataValidator = new FriendshipDataValidator(userService, userDomainService);
-        FriendshipDomainService friendshipDomainService = new FriendshipDomainService(friendshipRequestValidator, friendshipRepository, friendshipRequestRepository);
+        FriendshipDataValidator friendshipDataValidator = new FriendshipDataValidator();
+        FriendshipDomainService friendshipDomainService = new FriendshipDomainService(friendshipRepository, friendshipRequestRepository);
         friendshipRequestService = new FriendshipRequestService(
             friendshipDataValidator,
             friendshipRequestDomainService,

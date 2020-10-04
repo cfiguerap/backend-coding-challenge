@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class FriendshipRequestService extends FriendshipService {
 
-    private FriendshipRequestDomainService friendshipRequestDomainService;
+    private final FriendshipRequestDomainService friendshipRequestDomainService;
 
     @Autowired
     public FriendshipRequestService(

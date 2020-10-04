@@ -17,7 +17,7 @@ public class FriendshipRequestRepositoryInMemory implements FriendshipRequestRep
 
     private final Map<String, List<FriendshipRequestEntity>> requests = new ConcurrentHashMap<>();
 
-    private FriendshipRequestEntityConverter converter;
+    private final FriendshipRequestEntityConverter converter;
 
     @Autowired
     public FriendshipRequestRepositoryInMemory(FriendshipRequestEntityConverter converter) {

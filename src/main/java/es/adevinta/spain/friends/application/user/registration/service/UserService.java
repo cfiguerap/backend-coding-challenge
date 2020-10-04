@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserService {
 
-    private UserDomainService userDomainService;
+    private final UserDomainService userDomainService;
 
     @Autowired
     public UserService(UserDomainService userDomainService) {

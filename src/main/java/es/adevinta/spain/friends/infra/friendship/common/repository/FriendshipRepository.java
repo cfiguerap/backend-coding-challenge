@@ -9,11 +9,11 @@ import java.util.List;
 @Repository
 public interface FriendshipRepository {
 
-    public boolean exists(Friendship friendship);
+    boolean exists(Friendship friendship);
 
-    public List<Friendship> friendships(Username username);
+    List<Friendship> friendships(Username username);
 
-    public void save(Friendship friendship);
+    void save(Friendship friendship);
 
-    public void remove(Friendship friendship);
+    void remove(Friendship friendship);
 }

@@ -12,7 +12,7 @@ import static org.junit.Assert.assertNotNull;
 
 public class UserEntityConverterTest {
 
-    private UserEntityConverter converter = new UserEntityConverter();
+    private final UserEntityConverter converter = new UserEntityConverter();
 
     @Test
     public void shouldConvertUserToEntitySuccessfully() {

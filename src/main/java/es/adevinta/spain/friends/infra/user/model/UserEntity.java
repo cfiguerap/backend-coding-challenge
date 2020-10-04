@@ -4,8 +4,8 @@ import java.util.Objects;
 
 public class UserEntity {
 
-    private String username;
-    private String password;
+    private final String username;
+    private final String password;
 
     public UserEntity(String username, String password) {
         this.username = username;
