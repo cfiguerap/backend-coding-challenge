@@ -19,6 +19,8 @@ import es.adevinta.spain.friends.infra.user.model.UserEntityConverter;
 import org.junit.Before;
 import org.junit.Test;
 
+import static org.junit.Assert.*;
+
 public class FriendshipDomainServiceTest {
 
     private FriendshipDomainService friendshipDomainService;
@@ -100,5 +102,28 @@ public class FriendshipDomainServiceTest {
             .build();
         friendshipRequestRepository.remove(request);
         friendshipDomainService.declineFriendship(request.reverse());
+    }
+
+    @Test
+    public void shouldShowFriendsSuccessfully() throws CannotAcceptFriendshipException {
+        User userFrom = UserTestUtils.randomUser();
+        User userTo = UserTestUtils.randomUser();
+
+        FriendshipRequest request = FriendshipRequestBuilder.builder()
+                .withFrom(userFrom)
+                .withTo(userTo)
+                .build();
+        friendshipRequestRepository.save(request);
+
+        assertTrue(friendshipDomainService.friendships(userFrom).isEmpty());
+        assertTrue(friendshipDomainService.friendships(userTo).isEmpty());
+
+        friendshipDomainService.acceptFriendship(request.reverse());
+
+        assertFalse(friendshipDomainService.friendships(userFrom).isEmpty());
+        assertFalse(friendshipDomainService.friendships(userTo).isEmpty());
+
+        assertEquals(userTo.username().value(), friendshipDomainService.friendships(userFrom).get(0).value());
+        assertEquals(userFrom.username().value(), friendshipDomainService.friendships(userTo).get(0).value());
     }
 }

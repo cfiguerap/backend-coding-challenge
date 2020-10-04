@@ -1,6 +1,8 @@
 package es.adevinta.spain.friends.legacy;
 
 import es.adevinta.spain.friends.application.friendship.common.service.FriendshipService;
+import es.adevinta.spain.friends.application.friendship.request.model.FriendshipData;
+import es.adevinta.spain.friends.application.friendship.request.model.FriendshipDataBuilder;
 import es.adevinta.spain.friends.application.friendship.request.model.FriendshipRequestData;
 import es.adevinta.spain.friends.application.friendship.request.model.FriendshipRequestDataBuilder;
 import es.adevinta.spain.friends.application.friendship.request.service.FriendshipRequestService;
@@ -13,6 +15,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/friendship")
@@ -79,10 +83,18 @@ public class FriendshipLegacyController {
   }
 
   @GetMapping("/list")
-  Object listFriends(
+  List<String> listFriends(
       @RequestParam("username") String username,
       @RequestHeader("X-Password") String password
   ) {
-    throw new RuntimeException("not implemented yet!");
+    try {
+      FriendshipData data = FriendshipDataBuilder.builder()
+          .withFrom(username)
+          .withPassword(password)
+        .build();
+      return friendshipService.friendships(data);
+    } catch (UserNotFoundException | IncorrectPasswordException e) {
+      throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+    }
   }
 }

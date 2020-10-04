@@ -1,6 +1,7 @@
 package es.adevinta.spain.friends.application.friendship.common.service;
 
 import es.adevinta.spain.friends.application.friendship.common.validator.FriendshipDataValidator;
+import es.adevinta.spain.friends.application.friendship.request.model.FriendshipData;
 import es.adevinta.spain.friends.application.friendship.request.model.FriendshipRequestData;
 import es.adevinta.spain.friends.application.user.registration.model.IncorrectPasswordException;
 import es.adevinta.spain.friends.application.user.registration.model.UserNotFoundException;
@@ -14,6 +15,9 @@ import es.adevinta.spain.friends.domain.user.model.vo.Username;
 import es.adevinta.spain.friends.domain.user.service.UserDomainService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class FriendshipService {
@@ -43,6 +47,13 @@ public class FriendshipService {
     public void declineFriendship(FriendshipRequestData friendshipRequestData) throws CannotDeclineFriendshipException, UserNotFoundException, IncorrectPasswordException {
         FriendshipRequest friendshipRequest = dtoToRequest(friendshipRequestData);
         friendshipDomainService.declineFriendship(friendshipRequest);
+    }
+
+    public List<String> friendships(FriendshipData friendshipData) throws UserNotFoundException, IncorrectPasswordException {
+        User user = userDomainService.user(Username.create(friendshipData.from()));
+        friendshipDataValidator.authorize(user, friendshipData.password());
+        List<Username> friendUsernames = friendshipDomainService.friendships(user);
+        return friendUsernames.stream().map(t -> t.value()).collect(Collectors.toList());
     }
 
 

@@ -6,10 +6,15 @@ import es.adevinta.spain.friends.domain.friendship.common.model.Friendship;
 import es.adevinta.spain.friends.domain.friendship.common.model.FriendshipBuilder;
 import es.adevinta.spain.friends.domain.friendship.request.model.FriendshipRequest;
 import es.adevinta.spain.friends.domain.friendship.request.validation.FriendshipRequestValidator;
+import es.adevinta.spain.friends.domain.user.model.User;
+import es.adevinta.spain.friends.domain.user.model.vo.Username;
 import es.adevinta.spain.friends.infra.friendship.common.repository.FriendshipRepository;
 import es.adevinta.spain.friends.infra.friendship.request.repository.FriendshipRequestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class FriendshipDomainService {
@@ -29,6 +34,11 @@ public class FriendshipDomainService {
         this.friendshipRequestValidator = friendshipRequestValidator;
         this.friendshipRepository = friendshipRepository;
         this.friendshipRequestRepository = friendshipRequestRepository;
+    }
+
+    public List<Username> friendships(User user) {
+        List<Friendship> friends = friendshipRepository.friendships(user.username());
+        return friends.stream().map(t -> t.to().username()).collect(Collectors.toList());
     }
 
     public void acceptFriendship(FriendshipRequest friendshipRequest) throws CannotAcceptFriendshipException {

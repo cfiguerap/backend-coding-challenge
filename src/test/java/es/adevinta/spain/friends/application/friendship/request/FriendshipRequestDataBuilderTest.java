@@ -10,7 +10,7 @@ import static org.junit.Assert.assertEquals;
 public class FriendshipRequestDataBuilderTest {
 
     @Test
-    public void shouldBuilderCreateUserDataSuccessfully() throws NotValidRegisterException {
+    public void shouldBuildFriendshipRequestDataSuccessfully() throws NotValidRegisterException {
         FriendshipRequestData data = FriendshipRequestDataBuilder.builder()
                 .withFrom("userFrom")
                 .withPassword("12345678")
