@@ -1,8 +1,8 @@
 package es.adevinta.spain.friends.infra.friendship.common.model;
 
+import es.adevinta.spain.friends.UserTestUtils;
 import es.adevinta.spain.friends.domain.friendship.common.model.Friendship;
 import es.adevinta.spain.friends.domain.friendship.common.model.FriendshipBuilder;
-import es.adevinta.spain.friends.domain.user.UserTestUtils;
 import es.adevinta.spain.friends.domain.user.model.User;
 import es.adevinta.spain.friends.infra.user.model.UserEntityConverter;
 import org.junit.Test;

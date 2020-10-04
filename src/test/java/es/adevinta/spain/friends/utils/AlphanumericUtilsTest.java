@@ -13,12 +13,17 @@ public class AlphanumericUtilsTest {
     }
 
     @Test
-    public void shouldBeNotBeAlphanumericUsingNull() {
+    public void shouldNotBeAlphanumericUsingNull() {
+        assertFalse(AlphanumericUtils.isAlphanumeric(null));
+    }
+
+    @Test
+    public void shouldNotBeAlphanumericUsingEmpty() {
         assertFalse(AlphanumericUtils.isAlphanumeric(""));
     }
 
     @Test
-    public void shouldBeNotBeAlphanumericUsingEmpty() {
-        assertFalse(AlphanumericUtils.isAlphanumeric(null));
+    public void shouldNotBeAlphanumericUsingSymbols() {
+        assertFalse(AlphanumericUtils.isAlphanumeric("-$&%?!"));
     }
 }

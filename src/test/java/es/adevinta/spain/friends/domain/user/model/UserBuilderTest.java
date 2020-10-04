@@ -1,6 +1,6 @@
 package es.adevinta.spain.friends.domain.user.model;
 
-import es.adevinta.spain.friends.domain.user.UserTestUtils;
+import es.adevinta.spain.friends.UserTestUtils;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

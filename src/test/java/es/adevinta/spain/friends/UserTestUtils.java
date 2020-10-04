@@ -1,4 +1,4 @@
-package es.adevinta.spain.friends.domain.user;
+package es.adevinta.spain.friends;
 
 import es.adevinta.spain.friends.domain.user.model.User;
 import es.adevinta.spain.friends.domain.user.model.UserBuilder;

@@ -1,6 +1,6 @@
 package es.adevinta.spain.friends.domain.friendship.common.model;
 
-import es.adevinta.spain.friends.domain.user.UserTestUtils;
+import es.adevinta.spain.friends.UserTestUtils;
 import es.adevinta.spain.friends.domain.user.model.User;
 import org.junit.Test;
 

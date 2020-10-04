@@ -1,8 +1,8 @@
 package es.adevinta.spain.friends.domain.user.service;
 
+import es.adevinta.spain.friends.UserTestUtils;
 import es.adevinta.spain.friends.application.user.registration.model.NotValidRegisterException;
 import es.adevinta.spain.friends.application.user.registration.model.UserNotFoundException;
-import es.adevinta.spain.friends.domain.user.UserTestUtils;
 import es.adevinta.spain.friends.domain.user.model.User;
 import es.adevinta.spain.friends.infra.user.model.UserEntityConverter;
 import es.adevinta.spain.friends.infra.user.repository.UserRepository;

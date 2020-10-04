@@ -1,10 +1,10 @@
 package es.adevinta.spain.friends.domain.friendship.request.service;
 
+import es.adevinta.spain.friends.UserTestUtils;
 import es.adevinta.spain.friends.domain.friendship.request.model.FriendshipRequest;
 import es.adevinta.spain.friends.domain.friendship.request.model.FriendshipRequestBuilder;
 import es.adevinta.spain.friends.domain.friendship.request.model.NotValidFriendshipRequestException;
 import es.adevinta.spain.friends.domain.friendship.request.validation.FriendshipRequestValidator;
-import es.adevinta.spain.friends.domain.user.UserTestUtils;
 import es.adevinta.spain.friends.domain.user.model.User;
 import es.adevinta.spain.friends.infra.friendship.common.model.FriendshipEntityConverter;
 import es.adevinta.spain.friends.infra.friendship.common.repository.FriendshipRepository;
